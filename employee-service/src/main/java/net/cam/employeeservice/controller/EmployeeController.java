@@ -1,6 +1,7 @@
 package net.cam.employeeservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import net.cam.employeeservice.dto.ApiResponseDto;
 import net.cam.employeeservice.dto.EmployeeDto;
 import net.cam.employeeservice.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class EmployeeController {
 
     //Get Employee By Id REST API
     @GetMapping("{id}")
-    public EmployeeDto getEmployeeById(@PathVariable("id") Long employeeId){
+    public ApiResponseDto getEmployeeById(@PathVariable("id") Long employeeId){
         return employeeService.getEmployeeById(employeeId);
     }
 
