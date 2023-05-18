@@ -3,6 +3,7 @@ package net.cam.departmentservice.service.impl;
 import lombok.RequiredArgsConstructor;
 import net.cam.departmentservice.dto.DepartmentDto;
 import net.cam.departmentservice.entity.Department;
+import net.cam.departmentservice.exception.ResourceNotFoundException;
 import net.cam.departmentservice.mapper.DepartmentMapper;
 import net.cam.departmentservice.repository.DepartmentRepository;
 import net.cam.departmentservice.service.DepartmentService;
@@ -22,6 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public DepartmentDto getDepartmentByCode(String departmentCode) {
-        return DepartmentMapper.MAPPER.mapToDepartmentDto(departmentRepository.findByDepartmentCode(departmentCode));
+        return DepartmentMapper.MAPPER.mapToDepartmentDto(
+                departmentRepository
+                .findByDepartmentCode(departmentCode)
+                .orElseThrow(() ->new ResourceNotFoundException("Department", "departmentCode", departmentCode)));
     }
 }

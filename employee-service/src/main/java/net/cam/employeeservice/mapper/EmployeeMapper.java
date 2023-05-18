@@ -1,4 +1,4 @@
-package mapper;
+package net.cam.employeeservice.mapper;
 
 import net.cam.employeeservice.dto.EmployeeDto;
 import net.cam.employeeservice.entity.Employee;

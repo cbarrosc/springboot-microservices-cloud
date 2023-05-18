@@ -1,7 +1,8 @@
 package net.cam.employeeservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import mapper.EmployeeMapper;
+import net.cam.employeeservice.exception.ResourceNotFoundException;
+import net.cam.employeeservice.mapper.EmployeeMapper;
 import net.cam.employeeservice.dto.EmployeeDto;
 import net.cam.employeeservice.entity.Employee;
 import net.cam.employeeservice.repository.EmployeeRepository;
@@ -22,6 +23,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getEmployeeById(Long employeeId) {
-        return EmployeeMapper.MAPPER.mapToEmployeeDto(employeeRepository.findById(employeeId).orElseThrow());
+        return EmployeeMapper.MAPPER.mapToEmployeeDto(employeeRepository
+                .findById(employeeId)
+                .orElseThrow(() ->new ResourceNotFoundException("Employee", "employeeId", employeeId.toString())));
     }
 }
