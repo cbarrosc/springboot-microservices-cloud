@@ -12,6 +12,11 @@ services:
       - "3306:3306"
     networks:
       - springboot-mysql-net
+  rabbitmq:
+    container_name: rabbitmq-microservices
+    image: rabbitmq
+    ports:
+      - "5672:5672"
 
 volumes:
   search_volume:
